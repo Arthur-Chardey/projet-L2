@@ -9,4 +9,4 @@ J'ai pensé à ajouter des items à récuperer pour ameliorer ses points et d'au
 
 # Semaine 16/11-22/11   
 Ecriture fichier main.cpp Jeu.cpp Jeu.h
-Jeu.cpp est utilisé pour initialiser SDL 
+Jeu.cpp est utilisé pour initialiser SDL #Julien
