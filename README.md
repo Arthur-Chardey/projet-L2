@@ -7,9 +7,11 @@ Cette semaine j'ai surtout pris le temps de penser les fonctionnalités du jeu e
 J'ai pensé à ajouter des items à récuperer pour ameliorer ses points et d'autres niveaux avec palteformes piegers etc
 
 
-# Semaine 16/11-22/11   
+# Semaine 4
 Ecriture fichier main.cpp Jeu.cpp Jeu.h
 Jeu.cpp est utilisé pour initialiser SDL #Julien
 
 # Semaine 5
 Création d'une case 16x16 sur laquelle le perso se déplace (design non définitif), pour l'instant il ne peut pas sauter et ne peut que se deplacer de bas en haut et de gauche à droite et butte contre les obstacles
+
+# Semaine 6
