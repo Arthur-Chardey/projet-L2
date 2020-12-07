@@ -1,7 +1,7 @@
 #include "constante.h"
 void jouer(SDL_Surface* ecran);
 SDL_Surface *mario[4] = {NULL};
-SDL_Surface *mur = NULL, *caisse = NULL, *caisseOK = NULL, *objectif = NULL, *marioActuel = NULL;
+SDL_Surface *mur = NULL, *caisse = NULL, *objectif = NULL, *marioActuel = NULL;
 SDL_Rect position, positionJoueur;
 SDL_Event event;
 

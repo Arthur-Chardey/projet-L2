@@ -41,7 +41,7 @@ int main(int argc, char *argv[]){
 						break;
 					case SDLK_DOWN:
 						posPerso = mario[DOWN];
-						deplacerJoueur(carte, &positionJoueur, BAS);
+						deplacerJoueur(carte, &positionJouseur, BAS);
 						break;
 					case SDLK_RIGHT:
 						posPerso = mario[RIGHT];
@@ -53,9 +53,6 @@ int main(int argc, char *argv[]){
 						break;
 					case SDLK_KP1:
 						jouer(ecran);
-						break;
-					case SDLK_KP2:
-						editeur(ecran);
 						break;
 				}
 				break;
