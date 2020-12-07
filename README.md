@@ -15,3 +15,4 @@ Jeu.cpp est utilisé pour initialiser SDL #Julien
 Création d'une case 16x16 sur laquelle le perso se déplace (design non définitif), pour l'instant il ne peut pas sauter et ne peut que se deplacer de bas en haut et de gauche à droite et butte contre les obstacles
 
 # Semaine 6
+Création d'un système (très basique) de saut et deplacement fluide avec plusieurs frame mais est rentrée en conflit avec mon précédent code, a réparer 
