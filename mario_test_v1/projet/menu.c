@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include <SDL/SDL.h>
 #include <SDL/SDL_image.h>
-#include "constante.h"
+#include "constantes.h"
 
 int main(int argc, char *argv[])
 {
@@ -27,10 +27,10 @@ int main(int argc, char *argv[])
             case SDL_KEYDOWN:
                 switch(event.key.keysym.sym)
                 {
-                    case SDL_ESCAPE: // Quitter
+                    case SDLK_ESCAPE: // Quitter
                         continuer = 0;
                         break;
-                    case SDL_KP1: // Jouer
+                    case SDLK_KP1: // Jouer
                         jouer(ecran);
                         break;
                 }

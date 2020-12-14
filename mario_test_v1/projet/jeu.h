@@ -1,4 +1,4 @@
-#include "constante.h"
+#include "constantes.h"
 void jouer(SDL_Surface* ecran);
 SDL_Surface *mario[4] = {NULL};
 SDL_Surface *mur = NULL, *caisse = NULL, *objectif = NULL, *marioActuel = NULL;
