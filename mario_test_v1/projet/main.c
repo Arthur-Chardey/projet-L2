@@ -3,7 +3,7 @@
 #include <SDL/SDL.h>
 #include <SDL/SDL_image.h>
 
-#include "constante.h"
+#include "constantes.h"
 #include "jeu.h"
 #include "editeur.h"
 
@@ -11,9 +11,9 @@ int main(int argc, char *argv[]){
 	SDL_Surface *ecran = NULL, *menu = NULL;
 	SDL_Rect positionMenu;
 	SDL_Event event;
-	
+
 	int continuer = 1;
-	
+
     	SDL_Init(SDL_INIT_VIDEO);
 
     	SDL_WM_SetIcon(IMG_Load("obstacle.jpg"), NULL);
@@ -23,7 +23,7 @@ int main(int argc, char *argv[]){
 	menu = IMG_Load("menu.jpg");
 	positionMenu.x = 0;
 	positionMenu.y = 0;
-	
+
 	while (continuer){
 		SDL_WaitEvent(&event);
 		switch(event.type){
@@ -57,12 +57,12 @@ int main(int argc, char *argv[]){
 				}
 				break;
 		}
-		
+
 		SDL_FillRect(ecran, NULL, SDL_MapRGB(ecran->format, 255, 255, 255));
 		SDL_BlitSurface(menu, NULL, ecran, &positionMenu);
 		SDL_Flip(ecran);
 	}
-	
+
     	SDL_FreeSurface(menu);
     	SDL_Quit();
 
