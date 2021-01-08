@@ -9,7 +9,7 @@
 using namespace std;
 
 #include "res.h"
-// Diverses outils : de dessin (dégradé), double to char*, la fonction VerifierTypeCase()...
+// Diverses outils : de dessin (dÃ©gradÃ©), double to char*, la fonction VerifierTypeCase()...
 #include "Outils.h"
 // FONCTIONS pour la gestion, l'ouverture, l'affichage... de la carte du jeu
 #include "Map.h"
@@ -20,13 +20,13 @@ using namespace std;
 // FONCTIONS charger la carte du niveau choisis...
 #include "ChargerMap.h"
 
-// FONCTIONS allègeant le main()
+// FONCTIONS allÃ¨geant le main()
 #include "GererEvents.h" 
 
 int main( int argc, char **argv ) {
     // Mario temporaire
     Mario monMario;
-    // lesMarios est déclaré dans GererVies.h qui contrôle le contact entre une flèche et un Mario, un Mario et un Ennemis...
+    // lesMarios est dÃ©clarÃ© dans GererVies.h qui contrÃ´le le contact entre une flÃ¨che et un Mario, un Mario et un Ennemis...
     lesMarios.push_back( monMario );
     
     // ARROWS temporaire
@@ -35,15 +35,18 @@ int main( int argc, char **argv ) {
     GererMarioTemp.droite = false;
     GererMarioTemp.haut = false;
     GererMarioTemp.bas = false;
-    // GererMarios est déclaré dans GererVies.h
+    // GererMarios est dÃ©clarÃ© dans GererVies.h
     GererMarios.push_back( GererMarioTemp );
     
-    //Déclaration des variables locales
+    //DÃ©claration des variables locales
     TTF_Font *policeMenu = NULL;
     TTF_Font *policeTemps = NULL;
     SDL_Event event;
     
     //Initialisation de SDL
+    SDL_Windiw* fenetre;
+    SDL_Event evenements;
+    bool terminer = false;
     if( SDL_Init(SDL_INIT_VIDEO) != 0 ) {
         std::cerr << "Probleme pour initialiser SDL" << SDL_GetError() << std::endl;
         return 1;
@@ -53,17 +56,18 @@ int main( int argc, char **argv ) {
         fprintf(stderr, "Erreur d'initialisation de TTF_Init : %s\n", TTF_GetError());
         exit(EXIT_FAILURE);
     }
-    
-    // Mettre un titre à la fenêtre
+    SDL_Renderer* ecran;
+    ecran = SDL_CreateRenderer(fenetre, -1, SDL_RENDERER_ACCELERATED);
+    // Mettre un titre Ã  la fenÃªtre
     SDL_WM_SetCaption( "Version d'essai", NULL );
     
     // Initialsation de la variable affichagePleinEcran
     affichagePleinEcran = false;
-    //Ouverture d'une surface pour l'affichage de la fenêtre
+    //Ouverture d'une surface pour l'affichage de la fenÃªtre
     screen = SDL_SetVideoMode( WIDTH, HEIGHT, 32, SDL_DOUBLEBUF | SDL_HWSURFACE );
     if( screen == NULL ) done = 1;
     
-    // Laisser apparaître le curseur de la souris?
+    // Laisser apparaÃ®tre le curseur de la souris?
     if( JeuEnCours == 1 && affichagePleinEcran == true ) SDL_ShowCursor( SDL_DISABLE );
     else SDL_ShowCursor( SDL_ENABLE );
     
@@ -74,20 +78,20 @@ int main( int argc, char **argv ) {
     TTF_SetFontStyle( policeNivEnCours, TTF_STYLE_BOLD );
     policeTemps = TTF_OpenFont( "times.ttf", 24 );
     
-    // Crée les textes pour le menu
+    // CrÃ©e les textes pour le menu
     SDL_Surface *texteMenu [5];
     texteMenu[0] = TTF_RenderText_Blended( policeMenu, "Reprendre...", couleurBlanche );
-    texteMenu[1] = TTF_RenderText_Blended( policeMenu, "Retour Case départ (R)", couleurBlanche );
+    texteMenu[1] = TTF_RenderText_Blended( policeMenu, "Retour Case dÃ©part (R)", couleurBlanche );
     texteMenu[2] = TTF_RenderText_Blended( policeMenu, "Retour CheckPoint (C)", couleurBlanche );
-    texteMenu[3] = TTF_RenderText_Blended( policeMenu, "Plein écran ?", couleurBlanche );
+    texteMenu[3] = TTF_RenderText_Blended( policeMenu, "Plein Ã©cran ?", couleurBlanche );
     texteMenu[4] = TTF_RenderText_Blended( policeMenu, "QUITTER", couleurBlanche );
-    // Crée le texte affiché une fois le niveau fini
+    // CrÃ©e le texte affichÃ© une fois le niveau fini
     SDL_Surface *texteMenuTemps;
-    texteMenuTemps = TTF_RenderText_Blended( policeMenu, "Félicitations!", couleurBlanche );
+    texteMenuTemps = TTF_RenderText_Blended( policeMenu, "FÃ©licitations!", couleurBlanche );
     
     // On charge les noms des niveaux
     ChargerNomsNiveaux( "Niveaux.txt" );
-    // Si l'on ne trouve aucun niveau, on met fin au programme (en empêchant le lancement de la boucle de messages while())
+    // Si l'on ne trouve aucun niveau, on met fin au programme (en empÃªchant le lancement de la boucle de messages while())
     if( nomsNiveaux.size() == 0 ) done = 1;
     // On charge la nouvelle carte
     ChargerCarte( 0 );
@@ -95,16 +99,16 @@ int main( int argc, char **argv ) {
     // On dessine la carte
     if( JeuEnCours == true ) DessinerCarte();
     
-    // On crée un Mario et le place à la case départ
+    // On crÃ©e un Mario et le place Ã  la case dÃ©part
     lesMarios[0].RetourCaseDepart();
     
     // Boucle generale
     while( !done ) {
-        // Traiter les évènements
+        // Traiter les Ã©vÃ¨nements
         while( SDL_PollEvent(&event) ) {
             // Les messages sont traiter par les fonctions ci-dessous,
-            // ce n'est sans doute pas la méthode la plus esthétique
-            // mais elle fonctionne tout de même et permet d'allèger le contenu de la boucle principale du programme (while())
+            // ce n'est sans doute pas la mÃ©thode la plus esthÃ©tique
+            // mais elle fonctionne tout de mÃªme et permet d'allÃ¨ger le contenu de la boucle principale du programme (while())
             if( JeuEnCours == 1 ) eventsModeJeu( event );
             else if( JeuEnCours == 0 ) eventsModePause( event, texteMenu );
             else if( JeuEnCours == 2 ) eventsModeFin( event );
@@ -113,7 +117,7 @@ int main( int argc, char **argv ) {
         // On affiche ce qu'il faut afficher : le menu principal, le jeu...
         if( JeuEnCours == 1 ) {
             ModeJeu( policeTemps );
-            // On effectue les vérifications de dernière minute
+            // On effectue les vÃ©rifications de derniÃ¨re minute
             VerifierFlechettes();
             VerifierMarioEnnemis();
             VerifierMarioBoulets();
@@ -130,7 +134,7 @@ int main( int argc, char **argv ) {
     // Quitter SDL_ttf
     TTF_Quit();
     
-    // Libérer les surfaces
+    // LibÃ©rer les surfaces
     SDL_FreeSurface( texteMenu[0] );
     SDL_FreeSurface( texteMenu[1] );
     SDL_FreeSurface( texteMenu[2] );
